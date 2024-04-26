@@ -22,15 +22,16 @@ def download_file(file_path):
 
 def main():
     st.title("对话情感分析")
-    uploaded_file = st.file_uploader("上传CSV文件", type=["csv"])
+    uploaded_file = st.file_uploader("上传CSV文件,如果不上传，则采用内置的默认文件", type=["csv"])
 
     if uploaded_file is not None:
         with open("./resource/conversation.csv", 'wb') as f:
             f.write(uploaded_file.getbuffer())
         df = pd.read_csv(uploaded_file)
         st.write(df)  # 显示
-
-    prompt_input = st.text_area("修改Prompt")
+    prompt_template_string_default = read_file_string("./resource/prompt.txt")
+    print(prompt_template_string_default)
+    prompt_input = st.text_area(prompt_template_string_default)
     if st.button("保存Prompt"):
         with open('./resource/prompt.txt', 'w') as f:
             f.write(prompt_input)
