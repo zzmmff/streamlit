@@ -22,6 +22,8 @@ def download_file(file_path):
 
 def main():
     st.title("对话情感分析")
+    file_content_c = download_file("./resource/conversation.csv")
+    st.download_button(label="对话内容模板文件", data=file_content_c, file_name="conversation.csv")
     uploaded_file = st.file_uploader("上传CSV文件,如果不上传，则采用内置的默认文件", type=["csv"])
 
     if uploaded_file is not None:
