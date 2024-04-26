@@ -63,7 +63,7 @@ def main():
             df.to_csv("./resource/tag_result.csv", index=True)
             st.dataframe(df, width=800, height=1200)
             file_content = download_file("./resource/tag_result.csv")
-            st.download_button(label="点击下载", data=file_content,file_name="tag_result.csv")
+            st.download_button(label="点击下载", data=file_content, file_name="resource/tag_result.csv")
 
 
 def parse_llm_result(result):
